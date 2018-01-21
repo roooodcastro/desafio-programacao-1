@@ -38,7 +38,7 @@ RSpec.feature '.index purchases' do
     end
 
     scenario 'User can delete a purchase' do
-      click_link  I18n.t('messages.destroy')
+      click_link I18n.t('messages.destroy')
       expect(page).to have_content(I18n.t('messages.purchases'))
       expect(page).to have_tag(:div, with: { class: 'alert alert-success' })
       expect(page).to have_tag(:div, with: { class: 'alert alert-warning' })
@@ -47,7 +47,7 @@ RSpec.feature '.index purchases' do
 
     scenario 'There is an error deleting a purchase' do
       Purchase.destroy_all
-      click_link  I18n.t('messages.destroy')
+      click_link I18n.t('messages.destroy')
       expect(page).to have_content(I18n.t('messages.purchases'))
       expect(page).to have_tag(:div, with: { class: 'alert alert-danger' })
     end

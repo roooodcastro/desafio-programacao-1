@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Purchaser do
   subject { purchaser }
   let(:purchaser) { FactoryBot.build :purchaser }

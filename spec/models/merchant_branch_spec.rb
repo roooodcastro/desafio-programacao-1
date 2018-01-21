@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe MerchantBranch do
   subject { merchant_branch }
   let(:merchant_branch) { FactoryBot.build :merchant_branch }

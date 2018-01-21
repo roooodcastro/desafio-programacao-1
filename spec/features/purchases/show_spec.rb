@@ -24,7 +24,7 @@ RSpec.feature '.show purchase' do
   end
 
   scenario 'User can delete a purchase' do
-    click_link  I18n.t('messages.destroy')
+    click_link I18n.t('messages.destroy')
     expect(current_path).to eq purchases_path
     expect(page).to have_tag(:div, with: { class: 'alert alert-success' })
   end

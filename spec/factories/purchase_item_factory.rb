@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :purchase_item do
-    item_count { Random.rand(9) + 1 }
+    item_count { Random.rand(1..9) }
     item_price { Faker::Commerce.price }
     association :item
     association :merchant_branch
