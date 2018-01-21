@@ -24,11 +24,16 @@ en:
     back: Back
     back_to_top: Back to Top
     change_language: 'Change language to:'
+    close: Close
     confirm: 'Are you sure?'
     destroy: Destroy
     home: Home
     minimum_characters: characters minimum
     purchases: Existing Purchases
+    purchase_create_success: Purchase successfully created!
+    purchase_create_error: "Purchase couldn't be created: %{errors}"
+    purchase_destroy_success: Purchase successfully destroyed!
+    purchase_destroy_error: Purchase couldn't be destroyed!
     purchase_empty: There are no purchases!
     purchase_items: Purchase Items
     purchase_new_button: Create new Purchase

@@ -4,11 +4,16 @@ pt-BR:
     back: Voltar
     back_to_top: Voltar ao Topo
     change_language: 'Trocar idioma para:'
+    close: Fechar
     confirm: 'Você tem certeza?'
     destroy: Deletar
     home: Página Inicial
     minimum_characters: caracteres no mínimo
     purchases: Compras Cadastradas
+    purchase_create_success: Compra cadastrada com sucesso!
+    purchase_create_error: "Houve um ou mais erros ao cadastrar a compra: %{errors}"
+    purchase_destroy_success: Compra excluída com sucesso!
+    purchase_destroy_error: Houve um erro na exclusão da compra!
     purchase_empty: Não há nenhuma compra criada!
     purchase_items: Itens da Compra
     purchase_new_button: Cadastrar Nova Compra

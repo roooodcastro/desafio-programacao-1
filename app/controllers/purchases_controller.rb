@@ -17,17 +17,18 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     created = @purchase.save_and_parse!
-    flash[:notice] = 'Purchase successfully created!' if created
+    flash[:notice] = t('messages.purchase_create_success') if created
     return redirect_to @purchase if created
-    flash.now[:error] = "Purchase couldn't be created!"
+    flash.now[:error] = t('messages.purchase_create_error',
+                          errors: @purchase.errors.full_messages.join(', '))
     render :new
   end
 
   def destroy
     Purchase.find(params[:id]).destroy
-    flash[:notice] = 'Purchase successfully destroyed!'
+    flash[:notice] = t('messages.purchase_destroy_success')
   rescue ActiveRecord::RecordNotFound
-    flash.now[:error] = "Purchase couldn't be destroyed!"
+    flash[:error] = t('messages.purchase_destroy_error')
   ensure
     redirect_to purchases_path
   end

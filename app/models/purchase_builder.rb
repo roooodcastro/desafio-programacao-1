@@ -28,9 +28,9 @@ class PurchaseBuilder
   end
 
   def build_purchase_item
-    PurchaseItem.new([purchaser: purchaser, merchant_branch: merchant_branch,
+    PurchaseItem.new({ purchaser: purchaser, merchant_branch: merchant_branch,
                       item: item, item_count: row[COL_ITEM_COUNT],
-                      item_price: row[COL_ITEM_PRICE], purchase: purchase])
+                      item_price: row[COL_ITEM_PRICE], purchase: purchase })
   end
 
   def find_or_build_associations
