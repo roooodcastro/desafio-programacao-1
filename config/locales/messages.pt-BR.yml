@@ -3,6 +3,7 @@ pt-BR:
   messages:
     back: Voltar
     back_to_top: Voltar ao Topo
+    change_language: 'Trocar idioma para:'
     confirm: 'Você tem certeza?'
     destroy: Deletar
     home: Página Inicial

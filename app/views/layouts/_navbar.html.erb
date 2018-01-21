@@ -25,6 +25,10 @@
     <% if user_signed_in? %>
       <ul class="navbar-nav navbar-user">
         <li class="nav-item">
+          <span class="nav-link"><%= current_user.email %></span>
+        </li>
+
+        <li class="nav-item">
           <%= link_to t('messages.sign_out'), destroy_user_session_path,
                       class: 'nav-link nav-signout-link',
                       method: :delete %>

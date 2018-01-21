@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :purchases, except: [:edit, :update]
+  resource :locales, only: [:update]
 end

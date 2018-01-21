@@ -16,15 +16,19 @@
     </thead>
     <tbody>
     <% purchase_items.each do |purchase_item| %>
-    <tr>
-      <td><%= purchase_item.purchaser_name %></td>
-      <td><%= purchase_item.item_name %></td>
-      <td class="text-right"><%= purchase_item.item_count %></td>
-      <td class="text-right"><%= purchase_item.item_price %></td>
-      <td class="text-right"><%= purchase_item.total_price %></td>
-      <td><%= purchase_item.merchant_name %></td>
-      <td><%= purchase_item.merchant_branch_address %></td>
-    </tr>
+      <tr>
+        <td><%= purchase_item.purchaser_name %></td>
+        <td><%= purchase_item.item_name %></td>
+        <td class="text-right"><%= purchase_item.item_count %></td>
+        <td class="text-right">
+          <%= number_to_currency purchase_item.item_price %>
+        </td>
+        <td class="text-right">
+          <%= number_to_currency purchase_item.total_price %>
+        </td>
+        <td><%= purchase_item.merchant_name %></td>
+        <td><%= purchase_item.merchant_branch_address %></td>
+      </tr>
     <% end %>
     </tbody>
   </table>

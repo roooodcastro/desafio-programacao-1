@@ -23,6 +23,7 @@ en:
   messages:
     back: Back
     back_to_top: Back to Top
+    change_language: 'Change language to:'
     confirm: 'Are you sure?'
     destroy: Destroy
     home: Home
