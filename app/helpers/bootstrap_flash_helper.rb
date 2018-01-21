@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BootstrapFlashHelper
   # Gera e retorna os flashs vindos do controller para exibir na tela.
   def bootstrap_flash
