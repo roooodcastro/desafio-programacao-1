@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120194911) do
+ActiveRecord::Schema.define(version: 20180121123037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,21 @@ ActiveRecord::Schema.define(version: 20180120194911) do
     t.index ["name"], name: "index_merchants_on_name", unique: true
   end
 
+  create_table "purchase_items", force: :cascade do |t|
+    t.integer "item_count"
+    t.float "item_price"
+    t.bigint "purchaser_id"
+    t.bigint "purchase_id"
+    t.bigint "merchant_branch_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_purchase_items_on_item_id"
+    t.index ["merchant_branch_id"], name: "index_purchase_items_on_merchant_branch_id"
+    t.index ["purchase_id"], name: "index_purchase_items_on_purchase_id"
+    t.index ["purchaser_id"], name: "index_purchase_items_on_purchaser_id"
+  end
+
   create_table "purchasers", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -45,14 +60,13 @@ ActiveRecord::Schema.define(version: 20180120194911) do
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer "item_count"
-    t.float "item_price"
-    t.bigint "purchaser_id"
-    t.bigint "merchant_branch_id"
-    t.bigint "item_id"
-    t.index ["item_id"], name: "index_purchases_on_item_id"
-    t.index ["merchant_branch_id"], name: "index_purchases_on_merchant_branch_id"
-    t.index ["purchaser_id"], name: "index_purchases_on_purchaser_id"
+    t.float "price_sum"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "data_file_file_name"
+    t.string "data_file_content_type"
+    t.integer "data_file_file_size"
+    t.datetime "data_file_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,7 +87,8 @@ ActiveRecord::Schema.define(version: 20180120194911) do
   end
 
   add_foreign_key "merchant_branches", "merchants"
-  add_foreign_key "purchases", "items"
-  add_foreign_key "purchases", "merchant_branches"
-  add_foreign_key "purchases", "purchasers"
+  add_foreign_key "purchase_items", "items"
+  add_foreign_key "purchase_items", "merchant_branches"
+  add_foreign_key "purchase_items", "purchasers"
+  add_foreign_key "purchase_items", "purchases"
 end

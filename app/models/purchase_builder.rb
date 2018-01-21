@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PurchaseBuilder
-  attr_reader :row, :purchase
+  attr_reader :row, :purchase_item, :purchase
 
   COL_PURCHASER = 0
   COL_ITEM_NAME = 1
@@ -8,56 +10,55 @@ class PurchaseBuilder
   COL_MERCHANT_ADDRESS = 4
   COL_MERCHANT_NAME = 5
 
-  def initialize(csv_row)
+  def initialize(purchase, csv_row)
+    @purchase = purchase
     @row = csv_row
     parse_row
   end
 
-  def save!
-    purchase.save!
-  end
+  delegate :save!, to: :purchase_item
 
   private
 
   attr_reader :purchaser, :merchant, :merchant_branch, :item
 
   def parse_row
-    get_or_build_associations
-    @purchase = build_purchase
+    find_or_build_associations
+    @purchase_item = build_purchase_item
   end
 
-  def build_purchase
-    Purchase.new(purchaser: purchaser, merchant_branch: merchant_branch,
-                 item: item, item_count: row[COL_ITEM_COUNT],
-                 item_price: row[COL_ITEM_PRICE] )
+  def build_purchase_item
+    PurchaseItem.new([purchaser: purchaser, merchant_branch: merchant_branch,
+                      item: item, item_count: row[COL_ITEM_COUNT],
+                      item_price: row[COL_ITEM_PRICE], purchase: purchase])
   end
 
-  def get_or_build_associations
-    @purchaser = get_or_build_purchaser
-    @item = get_or_build_item
-    @merchant = get_or_build_merchant
-    @merchant_branch = get_or_build_merchant_branch
+  def find_or_build_associations
+    @purchaser = find_or_build_purchaser
+    @item = find_or_build_item
+    @merchant = find_or_build_merchant
+    @merchant_branch = find_or_build_merchant_branch
   end
 
-  def get_or_build_purchaser
+  def find_or_build_purchaser
     purchaser = Purchaser.find_by(name: row[COL_PURCHASER])
     return purchaser if purchaser
     Purchaser.new(name: row[COL_PURCHASER])
   end
 
-  def get_or_build_merchant
+  def find_or_build_merchant
     merchant = Merchant.find_by(name: row[COL_MERCHANT_NAME])
     return merchant if merchant
     Merchant.new(name: row[COL_MERCHANT_NAME])
   end
 
-  def get_or_build_merchant_branch
+  def find_or_build_merchant_branch
     branch = MerchantBranch.find_by(address: row[COL_MERCHANT_ADDRESS])
     return branch if branch
     MerchantBranch.new(address: row[COL_MERCHANT_ADDRESS], merchant: merchant)
   end
 
-  def get_or_build_item
+  def find_or_build_item
     item = Item.find_by(name: row[COL_ITEM_NAME])
     return item if item
     Item.new(name: row[COL_ITEM_NAME])

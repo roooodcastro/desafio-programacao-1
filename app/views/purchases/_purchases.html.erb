@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="my-0"><%= t('messages.purchases') %></h4>
+  </div>
+  <% if purchases.present? %>
+    <table class="table table-hover mb-0">
+      <thead>
+      <tr>
+        <th><%= Purchase.human_attribute_name :id %></th>
+        <th class="text-right">
+          <%= Purchase.human_attribute_name :purchase_items_count %>
+        </th>
+        <th><%= Purchase.human_attribute_name :actions %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% purchases.each do |purchase| %>
+        <tr>
+          <td><%= purchase.id %></td>
+          <td class="text-right"><%= purchase.purchase_items.size %></td>
+          <td>
+            <div class="btn-group d-flex">
+              <%= link_to t('messages.show'), purchase,
+                          class: 'btn btn-secondary w-100' %>
+              <%= link_to t('messages.destroy'), purchase, method: :delete,
+                          class: 'btn btn-danger w-100',
+                          data: { confirm: t('messages.confirm') }%>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="card-body">
+      <div class="alert alert-warning my-0">
+        <%= t 'messages.purchase_empty' %>
+      </div>
+    </div>
+  <% end %>
+</div>

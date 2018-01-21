@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MerchantBranch < ApplicationRecord
   belongs_to :merchant
 

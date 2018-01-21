@@ -23,3 +23,5 @@
 .idea/**/*
 
 spec/examples.txt
+.env
+/public/system/**/*

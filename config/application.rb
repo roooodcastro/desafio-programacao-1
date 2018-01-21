@@ -25,5 +25,9 @@ module NexaasTest
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.i18n.default_locale = 'pt-BR'
+
+    config.filepicker_rails.api_key = ENV['FILEPICKER_API_KEY']
   end
 end

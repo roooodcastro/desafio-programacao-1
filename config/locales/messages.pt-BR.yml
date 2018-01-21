@@ -1,0 +1,18 @@
+---
+pt-BR:
+  messages:
+    back: Voltar
+    back_to_top: Voltar ao Topo
+    confirm: 'Você tem certeza?'
+    destroy: Deletar
+    home: Página Inicial
+    minimum_characters: caracteres no mínimo
+    purchases: Compras Cadastradas
+    purchase_empty: Não há nenhuma compra criada!
+    purchase_items: Itens da Compra
+    purchase_new_button: Cadastrar Nova Compra
+    purchase_new_title: Fazer upload de uma nova compra
+    purchase_total_price: 'Faturamento total da compra:'
+    sign_out: Sair
+    show: Exibir
+
