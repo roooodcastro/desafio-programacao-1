@@ -10,7 +10,8 @@ class ApplicationRecord < ActiveRecord::Base
     transaction do
       begin
         yield
-      rescue StandardError
+      rescue StandardError => e
+        Rails.logger.error(e)
         sucesso = false
         raise ActiveRecord::Rollback
       end
