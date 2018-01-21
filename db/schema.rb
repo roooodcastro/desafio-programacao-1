@@ -10,10 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120192403) do
+ActiveRecord::Schema.define(version: 20180120194911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_items_on_name", unique: true
+  end
+
+  create_table "merchant_branches", force: :cascade do |t|
+    t.string "address"
+    t.bigint "merchant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["merchant_id"], name: "index_merchant_branches_on_merchant_id"
+  end
+
+  create_table "merchants", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_merchants_on_name", unique: true
+  end
+
+  create_table "purchasers", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_purchasers_on_name", unique: true
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "item_count"
+    t.float "item_price"
+    t.bigint "purchaser_id"
+    t.bigint "merchant_branch_id"
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_purchases_on_item_id"
+    t.index ["merchant_branch_id"], name: "index_purchases_on_merchant_branch_id"
+    t.index ["purchaser_id"], name: "index_purchases_on_purchaser_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +72,8 @@ ActiveRecord::Schema.define(version: 20180120192403) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "merchant_branches", "merchants"
+  add_foreign_key "purchases", "items"
+  add_foreign_key "purchases", "merchant_branches"
+  add_foreign_key "purchases", "purchasers"
 end
