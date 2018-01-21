@@ -47,9 +47,7 @@ Este desafio foi baseado neste outro desafio: https://github.com/lschallenges/da
 
 # Instruções de execução da solução apresentada:
 
-Para executar a aplicação localmente, basta seguir os passos normais de execução
-de uma aplicação Rails, com a diferença que é necessário configurar uma chave
-de API para o Filestack do Heroku:
+## Para executar a aplicação localmente, basta seguir os passos normais de execução de uma aplicação Rails, com a diferença que é necessário configurar uma chave de API para o Filestack do Heroku:
 
 1. $ Se não estiver usando RVM, verificar se está usando o Ruby 2.4.3
 2. $ bundle install
@@ -59,7 +57,16 @@ de API para o Filestack do Heroku:
 6. $ export FILEPICKER_API_KEY=AbozJ3mmaScTRLLOpsOSrz
 7. rails s
 
-Para executar os testes automatizados, basta rodar o comando:
+## Para executar os testes automatizados, basta rodar o comando:
 
 1. $ export FILEPICKER_API_KEY=AbozJ3mmaScTRLLOpsOSrz
 2. $ rspec
+
+## Para acessar o sistema, faça login com o usuário Admin criado pelo seeds:
+
+email: admin@example.com
+senha: 123456
+
+## Também é possível criar um novo arquivo de input, com a tarefa rake:
+
+$ rails example:create

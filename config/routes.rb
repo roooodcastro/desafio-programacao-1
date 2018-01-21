@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: 'home#index'
+  root to: 'purchases#index'
 
   resources :purchases, except: [:edit, :update]
   resource :locales, only: [:update]
