@@ -14,7 +14,7 @@ module BootstrapFlashHelper
     content_tag('div', class: "alert alert-#{type} fade show", role: 'alert') do
       concat bootstrap_close_button('alert') if dismissable
       concat content_tag('strong', title_text) if title_text
-      concat(capture { yield })
+      concat(content_tag(:span, capture { yield }))
     end
   end
 

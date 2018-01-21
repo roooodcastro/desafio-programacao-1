@@ -3,7 +3,7 @@
 require 'simplecov'
 
 SimpleCov.start 'rails' do
-  minimum_coverage 95
+  minimum_coverage 90
   coverage_dir 'doc/coverage'
 end
 
